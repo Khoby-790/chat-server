@@ -16,10 +16,10 @@ const user = {
  */
 beforeAll(async () => await dbHandler.connect());
 
-/**
- * Clear all test data after every test.
- */
-afterEach(async () => await dbHandler.clearDatabase());
+// /**
+//  * Clear all test data after every test.
+//  */
+// afterEach(async () => await dbHandler.clearDatabase());
 
 
 /**
@@ -29,14 +29,10 @@ afterAll(async () => await dbHandler.closeDatabase());
 
 describe('Creating a user', () => {
     it('should create a user and not throw an error', async () => {
-        expect(async () => {
-            await userService.createUser(user)
-        }).not.toThrow();
+        expect(async () => await userService.createUser(user)).not.toThrow();
     });
 
     it('should throw and error if user already exists', async () => {
-        expect(async () => {
-            await userService.createUser(user)
-        }).toThrow();
+        expect(async () => await userService.createUser(user)).toThrow();
     });
 });

@@ -1,4 +1,4 @@
-const { Schema, SchemaTypes } = require("mongoose");
+const { Schema, SchemaTypes, model } = require("mongoose");
 
 
 const schema = new Schema({
@@ -6,4 +6,4 @@ const schema = new Schema({
     email: { type: SchemaTypes.String, required: true, unique: true }
 });
 
-module.exports = schema;
+module.exports = model("User", schema);

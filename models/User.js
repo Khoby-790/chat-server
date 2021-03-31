@@ -31,9 +31,9 @@ const schema = new Schema({
 });
 
 
-schema.pre("save", async (next) => {
+schema.pre("save", async function (next) {
     const user = this;
-    this.hash = await hash(this.hash);
+    this.hash = await hash(user.hash);
     next();
 })
 

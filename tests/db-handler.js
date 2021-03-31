@@ -29,3 +29,15 @@ module.exports.closeDatabase = async () => {
     await mongod.stop();
 }
 
+/**
+ * Remove all the data for all db collection
+ */
+
+module.exports.clearDatabase = async () => {
+    const collections = mongoose.connection.collections;
+
+    for (const key in collections) {
+        const collection = collections[key];
+        await collection.deleteMany();
+    }
+}

@@ -5,6 +5,12 @@ const dbHandler = require('./db-handler');
 const userService = require('../controllers/users.controller');
 
 
+const user = {
+    name: "John Doe",
+    email: "john@doe.com",
+    password: "hellojohn"
+}
+
 /**
  * Connect to a new in-memory database before running any tests.
  */
@@ -20,3 +26,11 @@ afterEach(async () => await dbHandler.clearDatabase());
  * Remove and close the db and server.
  */
 afterAll(async () => await dbHandler.closeDatabase());
+
+describe('Creating a user', () => {
+    it('should create a user and not throw an error', async () => {
+        expect(async () => {
+            await userService.createUser(user)
+        }).not.toThrow();
+    });
+});

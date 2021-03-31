@@ -11,6 +11,7 @@ module.exports.connect = async () => {
 
     const mongooseOpts = {
         useNewUrlParser: true,
+        useCreateIndex: true,
         // autoReconnect: true,
         // reconnectTries: Number.MAX_VALUE,
         // reconnectInterval: 1000,

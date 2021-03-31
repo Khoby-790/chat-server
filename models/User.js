@@ -14,6 +14,16 @@ async function hash(password) {
     })
 }
 
+async function verify(password, hash) {
+    return new Promise((resolve, reject) => {
+        const [salt, key] = hash.split(":")
+        crypto.scrypt(password, salt, 64, (err, derivedKey) => {
+            if (err) reject(err);
+            resolve(key == derivedKey.toString('hex'))
+        });
+    })
+}
+
 const schema = new Schema({
     name: { type: SchemaTypes.String, required: true },
     email: { type: SchemaTypes.String, required: true, unique: true },

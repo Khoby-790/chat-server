@@ -27,12 +27,12 @@ async function verify(password, hash) {
 const schema = new Schema({
     name: { type: SchemaTypes.String, required: true },
     email: { type: SchemaTypes.String, required: true, unique: true },
-    hash: { type: SchemaTypes.String, required: true }
+    hash: { type: SchemaTypes.String, required: false }
 });
 
 
 schema.pre("save", async (next) => {
-    this.hash = await hash(this.password);
+    this.hash = await hash(this.hash);
     next();
 })
 

@@ -9,7 +9,8 @@ const createUser = async ({ name, email, password }) => {
 }
 
 const authenticateUser = async ({ email, password }) => {
-    
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) throw new Error("User does not exist");
 }
 
 module.exports = {

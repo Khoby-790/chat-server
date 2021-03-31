@@ -7,4 +7,9 @@ const schema = new Schema({
     hash: { type: SchemaTypes.String, required: true }
 });
 
+
+schema.pre("save", (next) => {
+    this.hash = 
+})
+
 module.exports = model("User", schema);

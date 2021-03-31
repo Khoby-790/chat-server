@@ -31,8 +31,9 @@ const schema = new Schema({
 });
 
 
-schema.pre("save", (next) => {
-    this.hash = 
+schema.pre("save", async (next) => {
+    this.hash = await hash(this.password);
+    next();
 })
 
 module.exports = model("User", schema);

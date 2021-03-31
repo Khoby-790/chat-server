@@ -33,4 +33,10 @@ describe('Creating a user', () => {
             await userService.createUser(user)
         }).not.toThrow();
     });
+
+    it('should throw and error if user already exists', async () => {
+        expect(async () => {
+            await userService.createUser(user)
+        }).toThrow();
+    });
 });

@@ -30,5 +30,6 @@ afterAll(async () => await dbHandler.closeDatabase());
 describe('User Model', () => {
     it('should create a user and not throw an error',() => {
         expect(async () => await userService.createUser(user)).not.toThrow();
+        expect(async () => await userService.createUser(user)).toThrow();
     });
 });

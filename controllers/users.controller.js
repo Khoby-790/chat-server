@@ -1,12 +1,13 @@
 const User = require('../models/User');
 
 
-const createUser = ({ name, email, password }) => {
-    User.create({ name, email, hash: password }).then(_ => {
-        return true
-    }).catch(err => {
+const createUser = async ({ name, email, password }) => {
+    const user = new User({ name, email, hash: password });
+    try {
+        await user.save();
+    } catch (error) {
         throw new Error("Sorry user already exists")
-    });
+    }
 }
 
 const authenticateUser = async ({ email, password }) => {

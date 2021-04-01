@@ -3,6 +3,9 @@ const User = require('../models/User');
 async function createUser({ name, email, password }) {
     const user = new User({ name, email, hash: password });
     const __ = await user.save();
+    if (__ instanceof Error) {
+        throw new Error("Sorry")
+    }
     return __;
 }
 

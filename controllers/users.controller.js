@@ -2,11 +2,11 @@ const User = require('../models/User');
 
 async function createUser({ name, email, password }) {
     const user = new User({ name, email, hash: password });
-    const __ = await user.save();
-    if (__ instanceof Error) {
-        throw new Error("Sorry")
+    try {
+        await user.save();
+    } catch (error) {
+        throw new Error("Sorry user already exists")
     }
-    return __;
 }
 
 const authenticateUser = async ({ email, password }) => {

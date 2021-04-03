@@ -15,9 +15,12 @@ const authenticateUser = async ({ email, password }) => {
 }
 
 async function getUsers({ filters: { } }) {
-    const users = await User.find(filters)
+    const users = await User.find({ ...filters });
+    return users;
 }
 
 module.exports = {
-    createUser
+    createUser,
+    authenticateUser,
+    getUsers
 }

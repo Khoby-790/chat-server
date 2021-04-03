@@ -14,7 +14,7 @@ const authenticateUser = async ({ email, password }) => {
     if (!existingUser) throw new Error("User does not exist");
 }
 
-async function getUsers({ filters: { } }) {
+async function getUsers({ filters }) {
     const users = await User.find({ ...filters });
     return users;
 }

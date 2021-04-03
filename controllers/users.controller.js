@@ -3,6 +3,7 @@ const User = require('../models/User');
 async function createUser({ name, email, password }) {
     const user = new User({ name, email, hash: password });
     await user.save();
+    return user;
 }
 
 const authenticateUser = async ({ email, password }) => {

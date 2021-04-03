@@ -39,4 +39,8 @@ describe('User Model', () => {
         await userService.createUser(user);
         expect(async () => await userService.createUser(user)).toThrow("Sorry user already exists");
     });
+
+    test('should fetch all created users with given filters', () => {
+        
+    });
 });
